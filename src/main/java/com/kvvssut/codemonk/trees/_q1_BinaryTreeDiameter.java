@@ -4,42 +4,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-final class BinaryTree {
-	private int data;
-	private BinaryTree left, right;
-
-	public BinaryTree(int data, BinaryTree left, BinaryTree right) {
-		this.data = data;
-		this.left = left;
-		this.right = right;
-	}
-
-	public int getData() {
-		return data;
-	}
-
-	public void setData(int data) {
-		this.data = data;
-	}
-
-	public BinaryTree getLeft() {
-		return left;
-	}
-
-	public void setLeft(BinaryTree left) {
-		this.left = left;
-	}
-
-	public BinaryTree getRight() {
-		return right;
-	}
-
-	public void setRight(BinaryTree right) {
-		this.right = right;
-	}
-
-}
-
 public class _q1_BinaryTreeDiameter {
 
 	public static void main(String[] args) throws IOException {
@@ -63,29 +27,109 @@ public class _q1_BinaryTreeDiameter {
 					}
 				} else {
 					if (paths[j] == 'L') {
-						currentNode = currentNode.getLeft();
+						currentNode = currentNode.getLeftNode();
 					} else {
-						currentNode = currentNode.getRight();
+						currentNode = currentNode.getRightNode();
 					}
 				}
 			}
 		}
-		
-		
+
+		System.out.println(diameterOfTree(root));
 	}
 
-	private static BinaryTree createNode(int data) {
-		return new BinaryTree(data, null, null);
+	final class BinaryTree {
+		private int data;
+		private BinaryTree left, right;
+
+		public BinaryTree(int data, BinaryTree left, BinaryTree right) {
+			this.data = data;
+			this.left = left;
+			this.right = right;
+		}
+
+		public int getData() {
+			return data;
+		}
+
+		public void setData(int data) {
+			this.data = data;
+		}
+
+		public BinaryTree getLeft() {
+			return left;
+		}
+
+		public void setLeft(BinaryTree left) {
+			this.left = left;
+		}
+
+		public BinaryTree getRight() {
+			return right;
+		}
+
+		public void setRight(BinaryTree right) {
+			this.right = right;
+		}
+
+		public BinaryTree getLeftNode() {
+			if (this.getLeft() == null) {
+				this.setLeft(new BinaryTree(0, null, null));
+			}
+			return left;
+		}
+
+		public BinaryTree getRightNode() {
+			if (this.getRight() == null) {
+				this.setRight(new BinaryTree(0, null, null));
+			}
+			return right;
+		}
+
+	}
+
+	private static int diameterOfTree(BinaryTree node) {
+		if (node == null) {
+			return 0;
+		}
+
+		int lHeight = heightOfTree(node.getLeft());
+		int rHeight = heightOfTree(node.getRight());
+
+		int lDiameter = diameterOfTree(node.getLeft());
+		int rDiameter = diameterOfTree(node.getRight());
+
+		return Math.max(1 + lHeight + rHeight, Math.max(lDiameter, rDiameter));
+	}
+
+	private static int heightOfTree(BinaryTree node) {
+		if (node == null) {
+			return 0;
+		}
+
+		return (1 + Math.max(heightOfTree(node.getLeft()), heightOfTree(node.getRight())));
+	}
+
+	public static BinaryTree createNode(int data) {
+		return new _q1_BinaryTreeDiameter().new BinaryTree(data, null, null);
 	}
 
 	private static void addLeftChildNode(BinaryTree node, int data) {
-		BinaryTree newNode = createNode(data);
-		node.setLeft(newNode);
+		if (node.getLeft() != null) {
+			node.getLeft().setData(data);
+		} else {
+			BinaryTree newNode = createNode(data);
+			node.setLeft(newNode);
+		}
 	}
 
 	private static void addRightChildNode(BinaryTree node, int data) {
-		BinaryTree newNode = createNode(data);
-		node.setRight(newNode);
+		if (node.getRight() != null) {
+			node.getRight().setData(data);
+		} else {
+			BinaryTree newNode = createNode(data);
+			node.setRight(newNode);
+		}
 	}
 
 }
