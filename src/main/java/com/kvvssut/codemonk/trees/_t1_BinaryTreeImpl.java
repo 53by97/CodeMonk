@@ -47,16 +47,16 @@ public class _t1_BinaryTreeImpl {
 		addLeftChildNode(root.getRight(), 6);
 	}
 
-	private static BinaryTree createNode(int data) {
+	public static BinaryTree createNode(int data) {
 		return new BinaryTree(data, null, null);
 	}
 
-	private static void addLeftChildNode(BinaryTree node, int data) {
+	public static void addLeftChildNode(BinaryTree node, int data) {
 		BinaryTree newNode = createNode(data);
 		node.setLeft(newNode);
 	}
 
-	private static void addRightChildNode(BinaryTree node, int data) {
+	public static void addRightChildNode(BinaryTree node, int data) {
 		BinaryTree newNode = createNode(data);
 		node.setRight(newNode);
 	}
