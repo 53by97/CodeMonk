@@ -27,13 +27,127 @@ package com.kvvssut.codemonk.heapsandpriorityqueues;
 public class _t1_MaxBinaryHeapImpl {
 
 	public static void main(String[] args) {
-		
+		MaxHeap maxHeap = new MaxHeap(11);
+		maxHeap.insertKey(3);
+		maxHeap.insertKey(2);
+		maxHeap.deleteKey(1);
+		maxHeap.insertKey(15);
+		maxHeap.insertKey(5);
+		maxHeap.insertKey(4);
+		maxHeap.insertKey(45);
+		System.out.println(maxHeap.extractMax());
+		System.out.println(maxHeap.getMax());
+		maxHeap.increaseKey(2, 25);
+		System.out.println(maxHeap.getMax());
+
 	}
-	
-	public static int getMax(int [] heap) {
-		return heap[0];
+}
+
+class MaxHeap {
+
+	private int harr[];
+	private int capacity;
+	private int heap_size;
+
+	public MaxHeap(int capacity) {
+		this.harr = new int[capacity];
+		this.capacity = capacity;
+		this.heap_size = 0;
 	}
-	
-	
+
+	// Returns the maximum key (key at root) from max heap
+	public int getMax() {
+		return harr[0];
+	}
+
+	// Inserts a new key 'k'
+	public void insertKey(int key) {
+		if (heap_size == capacity) {
+			System.out.println("Overflow : couldn't insert key!");
+			return;
+		}
+
+		// First insert the new key at the end
+		heap_size++;
+		int i = heap_size - 1;
+		harr[i] = key;
+
+		// Fix the min heap property if it is violated
+		while (i != 0 && harr[parent(i)] < harr[i]) {
+			swap(i, parent(i));
+			i = parent(i);
+		}
+	}
+
+	// Decreases value of key at index 'i' to new_val. It is assumed that
+	// new_val is smaller than harr[i].
+	public void increaseKey(int i, int new_val) {
+		harr[i] = new_val;
+		while (i != 0 && harr[parent(i)] < harr[i]) {
+			swap(i, parent(i));
+			i = parent(i);
+		}
+	}
+
+	// Method to remove maximum element (or root) from the max heap
+	public int extractMax() {
+		if (heap_size <= 0) {
+			return Integer.MAX_VALUE;
+		} else if (heap_size == 1) {
+			heap_size--;
+			return harr[0];
+		}
+
+		int root = harr[0];
+		harr[0] = harr[heap_size - 1];
+		heap_size--;
+		maxHeapify(0);
+
+		return root;
+	}
+
+	// A recursive method to heapify a subtree with root at given index
+	// This method assumes that the subtrees are already heapified
+	public void maxHeapify(int i) {
+		int l = left(i);
+		int r = right(i);
+		int largest = i;
+
+		if (l < heap_size && harr[l] > harr[largest]) {
+			largest = l;
+		}
+		if (r < heap_size && harr[r] > harr[largest]) {
+			largest = r;
+		}
+		if (largest != i) {
+			swap(i, largest);
+			maxHeapify(largest);
+		}
+	}
+
+	// This function deletes key at index i. It first reduced value to minus
+	// infinite, then calls extractMin()
+	public void deleteKey(int i) {
+		increaseKey(i, Integer.MAX_VALUE);
+		extractMax();
+	}
+
+	public int parent(int i) {
+		return (i - 1) / 2;
+	}
+
+	public int left(int i) {
+		return (2 * i + 1);
+	}
+
+	public int right(int i) {
+		return (2 * i + 2);
+	}
+
+	public void swap(int i, int j) {
+		int dummy = harr[i];
+		harr[i] = harr[j];
+		harr[j] = dummy;
+	}
 
 }
