@@ -3,7 +3,7 @@ package com.kvvssut.codemonk.trees;
 import java.io.IOException;
 import java.util.Scanner;
 
-public class _q1_CreateBST {
+public class _q2_CreateBST {
 
 	public static void main(String[] args) throws IOException {
 		Scanner scanner = null;

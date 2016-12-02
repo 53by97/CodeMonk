@@ -16,19 +16,20 @@ public class TrieSearchEngineImpl {
 			insertKey(root, inputs[i]);
 		}
 
+		System.out.println("Enter prefix to search : ");
+
 		BufferedReader reader = null;
 		try {
 			reader = new BufferedReader(new InputStreamReader(System.in));
 
 			StringBuilder stringBuilder = new StringBuilder();
 			char ch;
+			int length;
 			while ((ch = (char) reader.read()) != '\n') {
 				stringBuilder.append(ch);
-				String[] words = searchProbableWords(root, stringBuilder.toString());
-				for (String word : words) {
-					System.out.print(word + ", ");
+				if ((length = stringBuilder.length()) > 3) {
+					searchProbableWords(root, stringBuilder.toString(), 0, length, length + 7);
 				}
-				System.out.println();
 			}
 
 		} finally {
@@ -36,8 +37,6 @@ public class TrieSearchEngineImpl {
 				reader.close();
 			}
 		}
-
-		System.out.println("Enter prefix to search : ");
 
 	}
 
@@ -54,18 +53,25 @@ public class TrieSearchEngineImpl {
 		root.setLeaf(true);
 	}
 
-	public static String[] searchProbableWords(TrieImplNode root, final String key) {
-		int level, length = key.length(), index;
+	public static boolean searchProbableWords(TrieImplNode node, final String key, int level, int length,
+			int maxLength) {
 
-		for (level = 0; level < length; level++) {
-			index = getIndexForChar(key.charAt(level));
-			if (root.getTrieArray()[index] == null) {
-				return false;
+		if (node != null) {
+			if (level == maxLength) {
+				
+
+			} else if (level > length && node.isLeaf()) {
+				
+
+			} else {
+				int index = getIndexForChar(key.charAt(level));
+				if (searchProbableWords(node.getTrieArray()[index], key, level + 1, length, maxLength)) {
+					
+				}
 			}
-			root = root.getTrieArray()[index];
 		}
 
-		return root.isLeaf();
+		return false;
 	}
 
 	public static int getIndexForChar(char ch) {
