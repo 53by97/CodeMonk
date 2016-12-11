@@ -1,6 +1,6 @@
 package com.kvvssut.codemonk.ds.advanceddatastructures;
 
-public class TrieInsertSearchDeleteImpl {
+public class _t1_TrieInsertSearchDeleteImpl {
 
 	public static final int ALPHABET_SIZE = 26;
 
@@ -106,7 +106,7 @@ class TrieNode {
 	private boolean isLeaf;
 
 	public TrieNode() {
-		this.trieArray = new TrieNode[TrieInsertSearchDeleteImpl.ALPHABET_SIZE];
+		this.trieArray = new TrieNode[_t1_TrieInsertSearchDeleteImpl.ALPHABET_SIZE];
 		this.isLeaf = false;
 	}
 
