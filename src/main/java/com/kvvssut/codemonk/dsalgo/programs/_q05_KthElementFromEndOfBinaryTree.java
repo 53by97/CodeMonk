@@ -1,27 +1,34 @@
 package com.kvvssut.codemonk.dsalgo.programs;
 
-public class _q1_HeightOfATreeWithout1ForLeafNode {
+public class _q05_KthElementFromEndOfBinaryTree {
 
 	public static void main(String[] args) {
-		BinaryTree root = createNode(5);
-		addLeftChildNode(root, 3);
+		BinaryTree root = createNode(10);
+		addLeftChildNode(root, 5);
 		addLeftChildNode(root.getLeft(), 1);
-		addRightChildNode(root.getLeft(), 4);
-		addRightChildNode(root, 9);
-		addLeftChildNode(root.getRight(), 6);
+		addRightChildNode(root.getLeft(), 6);
+		addRightChildNode(root, 19);
+		addLeftChildNode(root.getRight(), 17);
+		addLeftChildNode(root.getRight().getLeft(), 15);
 
-		System.out.println(heightOfABinaryTree(root));
+		System.out.println(getKthElementFromEndOfBinaryTree(root, 4));
 	}
 
-	static int heightOfABinaryTree(BinaryTree root) {
-		if (root == null || isLeafNode(root)) {
-			return 0;
+	private static int getKthElementFromEndOfBinaryTree(BinaryTree node, int k) {
+		
+		if (node.getRight() != null) {
+			getKthElementFromEndOfBinaryTree(node.getRight(), k--);
 		}
-		return (1 + Math.max(heightOfABinaryTree(root.getLeft()), heightOfABinaryTree(root.getRight())));
-	}
-
-	static boolean isLeafNode(BinaryTree node) {
-		return (node.getLeft() == null) && (node.getRight() == null);
+		
+		if (k == 0) {
+			return node.getData();
+		}
+		
+		if (node.getLeft() != null) {
+			getKthElementFromEndOfBinaryTree(node.getLeft(), k--);
+		}
+		
+		return -1;
 	}
 
 	static class BinaryTree {

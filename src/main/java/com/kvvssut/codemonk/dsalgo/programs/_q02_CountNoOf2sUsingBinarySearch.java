@@ -1,6 +1,6 @@
 package com.kvvssut.codemonk.dsalgo.programs;
 
-public class _q2_CountNoOf2sUsingBinarySearch {
+public class _q02_CountNoOf2sUsingBinarySearch {
 
 	public static void main(String[] args) {
 		int[] inputs = { 0, 1, 2, 2, 2, 2, 2, 3, 3, 3, 4, 4, 4, 4, 5, 5 };

@@ -2,7 +2,7 @@ package com.kvvssut.codemonk.dsalgo.programs;
 
 import java.util.Stack;
 
-public class _q3_InOrderTraversalOfABinaryTreeUsingStack {
+public class _q03_InOrderTraversalOfABinaryTreeUsingStack {
 
 	public static void main(String[] args) {
 		BinaryTree root = createNode(10);

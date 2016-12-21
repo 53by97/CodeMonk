@@ -2,7 +2,7 @@ package com.kvvssut.codemonk.dsalgo.programs;
 
 import java.util.Stack;
 
-public class _q4_FindingPairWithGivenSumInBST {
+public class _q04_FindingPairWithGivenSumInBST {
 
 	public static void main(String[] args) {
 		BinaryTree root = createNode(10);

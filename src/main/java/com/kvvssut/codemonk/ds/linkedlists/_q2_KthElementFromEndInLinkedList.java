@@ -18,7 +18,7 @@ public class _q2_KthElementFromEndInLinkedList {
 
 		for (int i = 0; i < k; i++) {
 			if (current == null) {
-				throw new IllegalArgumentException("Enter index is out of bound!");
+				throw new IllegalArgumentException("Entered index is out of bound!");
 			}
 			current = current.getNext();
 		}
