@@ -11,24 +11,32 @@ public class _q05_KthElementFromEndOfBinaryTree {
 		addLeftChildNode(root.getRight(), 17);
 		addLeftChildNode(root.getRight().getLeft(), 15);
 
-		System.out.println(getKthElementFromEndOfBinaryTree(root, 4));
+		System.out.println(getKthElementFromEndOfBinaryTree(null, root, 4, false));
 	}
 
-	private static int getKthElementFromEndOfBinaryTree(BinaryTree node, int k) {
-		
-		if (node.getRight() != null) {
-			getKthElementFromEndOfBinaryTree(node.getRight(), k--);
-		}
-		
+	private static int getKthElementFromEndOfBinaryTree(BinaryTree prev, BinaryTree node, int k, boolean reachedEnd) {
+
 		if (k == 0) {
 			return node.getData();
 		}
-		
-		if (node.getLeft() != null) {
-			getKthElementFromEndOfBinaryTree(node.getLeft(), k--);
+
+		if (node.getRight() == null && node.getLeft() == null) {
+			reachedEnd = true;
 		}
 		
-		return -1;
+		if (reachedEnd) {
+			k--;
+		}
+
+		if (node.getRight() != null) {
+			return getKthElementFromEndOfBinaryTree(node, node.getRight(), k, reachedEnd);
+		}
+
+		if (node.getLeft() != null) {
+			return getKthElementFromEndOfBinaryTree(node, node.getLeft(), k, reachedEnd);
+		}
+
+		return 0;
 	}
 
 	static class BinaryTree {
