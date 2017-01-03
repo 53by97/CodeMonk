@@ -1,6 +1,6 @@
 package com.kvvssut.codemonk.dsalgo.programs;
 
-public class _q09_CheckForMergedNodeInLinkedLists {
+public class _q10_CheckForMergedNodeInLinkedLists {
 
 	public static void main(String[] args) {
 		LinkedList<Integer> list1 = new LinkedList<Integer>();

@@ -5,7 +5,7 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 import java.util.HashSet;
 
-public class _q10_FindFirstRepeatedSubStringInAStream {
+public class _q11_FindFirstRepeatedSubStringInAStream {
 
 	public static void main(String[] args) throws IOException {
 		Reader reader = null;

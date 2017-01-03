@@ -2,7 +2,7 @@ package com.kvvssut.codemonk.dsalgo.programs;
 
 import java.util.HashSet;
 
-public class _q08_FindPairWithGivenSumInAnArray {
+public class _q09_FindPairWithGivenSumInAnArray {
 
 	public static void main(String[] args) {
 		int[] inputs = { 2, 7, 5, 10, 11, 14, 9, 3, 4 };
