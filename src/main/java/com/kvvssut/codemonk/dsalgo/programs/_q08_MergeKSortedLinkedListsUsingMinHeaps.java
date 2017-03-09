@@ -2,7 +2,6 @@ package com.kvvssut.codemonk.dsalgo.programs;
 
 public class _q08_MergeKSortedLinkedListsUsingMinHeaps {
 
-	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public static void main(String[] args) {
 
 		LinkedList<Integer> list1 = extractedList1();
@@ -15,50 +14,66 @@ public class _q08_MergeKSortedLinkedListsUsingMinHeaps {
 
 		LinkedList<Integer> list5 = extractedList5();
 
-		int k = 5;
+		int size1 = list1.size(), size2 = list2.size(), size3 = list3.size(), size4 = list4.size(),
+				size5 = list5.size();
 
-		LinkedList[] kLists = { list1, list2, list3, list4, list5 };
+		int maxSize = 0, totalSize = 0;
 
-		LinkedList<Integer> sortedList = kLists[0];
+		if (size1 > maxSize) {
+			maxSize = size1;
+		}
+		if (size2 > maxSize) {
+			maxSize = size2;
+		}
+		if (size3 > maxSize) {
+			maxSize = size3;
+		}
+		if (size4 > maxSize) {
+			maxSize = size4;
+		}
+		if (size5 > maxSize) {
+			maxSize = size5;
+		}
+		
+		totalSize = size1 + size2 + size3 + size4 + size5;
 
-		for (int i = 1; i < k; i++) {
-			sortedList = mergeAndReturn2SortedLinkedListUsingRecursion(sortedList, kLists[i]);
+		MinHeap minHeap = new MinHeap(totalSize);
+
+		for (int i = 0; i < maxSize; i++) {
+			if (size1 > i) {
+				minHeap.insertKey(list1.getData());
+				list1 = list1.getNext();
+			}
+			if (size2 > i) {
+				minHeap.insertKey(list2.getData());
+				list2 = list2.getNext();
+			}
+			if (size3 > i) {
+				minHeap.insertKey(list3.getData());
+				list3 = list3.getNext();
+			}
+			if (size4 > i) {
+				minHeap.insertKey(list4.getData());
+				list4 = list4.getNext();
+			}
+			if (size5 > i) {
+				minHeap.insertKey(list5.getData());
+				list5 = list5.getNext();
+			}
 		}
 
-		while (sortedList != null) {
-			System.out.print(sortedList.getData() + "  ");
-			sortedList = sortedList.getNext();
+		for (int i = 0; i < totalSize; i++) {
+			System.out.println(minHeap.extractMin());
 		}
 	}
 
-	private static LinkedList<Integer> mergeAndReturn2SortedLinkedListUsingRecursion(LinkedList<Integer> list1,
-			LinkedList<Integer> list2) {
-		if (list1 == null) {
-			return list2;
-		} else if (list2 == null) {
-			return list1;
-		}
-
-		LinkedList<Integer> result = null;
-
-		if (list1.getData() <= list2.getData()) {
-			result = list1;
-			result.setNext(mergeAndReturn2SortedLinkedListUsingRecursion(list1.getNext(), list2));
-		} else {
-			result = list2;
-			result.setNext(mergeAndReturn2SortedLinkedListUsingRecursion(list1, list2.getNext()));
-		}
-
-		return result;
-	}
-	
-	class MinHeap {
-		private LinkedList<Integer> harr[];
+	static class MinHeap {
+		private int harr[];
 		private int capacity;
 		private int heap_size;
 
 		public MinHeap(int capacity) {
-			this.harr = new LinkedList[capacity];
+			this.harr = new int[capacity];
 			this.capacity = capacity;
 			this.heap_size = 0;
 		}
@@ -159,7 +174,6 @@ public class _q08_MergeKSortedLinkedListsUsingMinHeaps {
 		}
 
 	}
-
 
 	static class LinkedList<K> {
 		public K data;
