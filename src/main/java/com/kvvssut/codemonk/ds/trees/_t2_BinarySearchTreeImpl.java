@@ -1,6 +1,10 @@
 package com.kvvssut.codemonk.ds.trees;
 
-import static com.kvvssut.codemonk.ds.trees._t1_BinaryTreeImpl.*;
+import static com.kvvssut.codemonk.ds.trees._t1_BinaryTreeImpl.addLeftChildNode;
+import static com.kvvssut.codemonk.ds.trees._t1_BinaryTreeImpl.addRightChildNode;
+import static com.kvvssut.codemonk.ds.trees._t1_BinaryTreeImpl.createNode;
+
+import com.kvvssut.codemonk.ds.trees._t1_BinaryTreeImpl.BinaryTree;
 
 /*
  * For a Binary Tree to be a Binary Search tree, the data of all nodes in the left subtree of the root node should be less than or equal to (<=) the data of the root 
